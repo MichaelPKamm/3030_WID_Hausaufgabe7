@@ -21,3 +21,7 @@ npm run dev
 In dieser WebApp werden die Erdbebendaten der letzten 30 Tage dargestellt. Es kann zwischen verschiedenen Magnituden und Zeitintervallen gewechselt werden.
 
 Die Daten stammen von der USGS: https://www.usgs.gov/
+
+## Screenshot der WebApp
+
+![alt text](06_USGS_Earthquakes_UI.png)
