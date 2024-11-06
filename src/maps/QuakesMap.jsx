@@ -23,7 +23,7 @@ function getMarkerRadius(magnitude) {
 
 const pointToLayer = ({ properties }, latlng) => {
   const radius = getMarkerRadius(properties.mag);
-  return L.circleMarker(latlng, { radius: radius });
+  return L.circleMarker(latlng, { radius: radius, color: "#eb3492" });
 };
 
 const onEachFeature = (feature, layer) => {
@@ -81,28 +81,44 @@ function Map() {
     fetchQuakeData(url);
   }, []);
 
+  //Dieser Useeffect wird erst ausgeführt, sobald sich die Variablen im Array ändern
+
+  useEffect(() => {
+    const url = `${BASE_URL}/${minMag}_${timespan}.geojson`;
+    fetchQuakeData(url);
+  }, [minMag, timespan]);
+
   // console.log(quakesJson);
 
   return (
     <>
       <CssBaseline />
-      <Header />
+      {/* Header Komponente welche Variablen erhält */}
+      <Header
+        minMag={minMag}
+        setMinMag={setMinMag}
+        timespan={timespan}
+        setTimespan={setTimespan}
+      />
       <MapContainer
         style={{ height: "100vh" }}
         center={[0, 0]}
-        zoom={3}
+        zoom={2}
         minZoom={2}
         maxBounds={OUTER_BOUNDS}
         maxBoundsViscosity={1}
       >
         <LayersControl position="topright">
-          {BASE_LAYERS.map(baseLayer => (
+          {BASE_LAYERS.map((baseLayer) => (
             <LayersControl.BaseLayer
               key={baseLayer.url}
               checked={baseLayer.checked}
               name={baseLayer.name}
             >
-              <TileLayer attribution={baseLayer.attribution} url={baseLayer.url} />
+              <TileLayer
+                attribution={baseLayer.attribution}
+                url={baseLayer.url}
+              />
             </LayersControl.BaseLayer>
           ))}
 
