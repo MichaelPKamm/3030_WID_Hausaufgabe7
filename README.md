@@ -2,7 +2,7 @@
 
 ## Getting started
 
-### 1. Installieren
+### Installieren
 
 `npm` Abhängigkeiten installieren:
 
@@ -10,7 +10,7 @@
 npm install
 ```
 
-Dev-Server starten:
+`npm` Dev-Server starten:
 
 ```sh
 npm run dev
